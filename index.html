@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Condição</title>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to top, black, grey); /* Substitua essas cores pelos valores desejados */
+        }
+
+        form {
+            background-color: rgb(83, 83, 83); /* Cor de fundo azul neon */
+            padding: 20px;
+            border-radius: 50px;
+            position: relative; /* Adicionado para permitir que o título seja posicionado em relação a este elemento */
+        } 
+        
+        #resultado {
+            color: rgb(236, 234, 234);
+        }
+
+        input[type="text"] {
+            padding: 8.5px; /* Espaçamento interno */
+            border-width: 1px; /* Largura da borda */
+            border-style: groove; /* Estilo da borda */
+            border-color: white; /* Cor da borda */
+            border-radius: 10px; /* Cantos arredondados */
+            font-size: 16px;
+            animation: grow 0.5s ease-in-out;
+        }
+
+        h4 {
+            margin-top: 20px; /* Espaço superior */
+            font-size: 20px; /* Tamanho da fonte */
+            color: rgb(236, 234, 234); /* Cor do texto */
+            display: flex; /* Para alinhar o conteúdo verticalmente */
+        }
+
+        .media-message {
+            margin-left: 365px; /* Adiciona margem à esquerda para separar a mensagem da nota */
+            color: white;
+            font-size: 30px;
+            text-align:center;
+            position: absolute ;
+            top: 1
+        }
+
+        h2 {
+            text-align: center;
+            position: absolute; /* Posicionamento absoluto */
+            top: 10px; /* Distância do topo */
+            left: 50%; /* Alinhamento horizontal no centro */
+            transform: translateX(-50%); /* Ajuste fino para alinhar no centro */
+            color: white; /* Cor do texto */
+            font-size: 40px;
+        }
+
+        @keyframes grow {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        #botão{
+           padding: 12px;
+           border-radius: 10px;
+        } 
+
+    </style>
+
+    <script>
+        function media() {
+            const nota1 = Number(document.getElementById("n1").value);
+            const nota2 = Number(document.getElementById("n2").value);
+            const nota3 = Number(document.getElementById("n3").value);
+            const nota4 = Number(document.getElementById("n4").value);
+        
+            const media = (nota1 + nota2 + nota3 + nota4) / 4 ;
+            
+            if(media>=7) { 
+                document.getElementById("resultado").innerHTML = "O resultado será exibido aqui:  " + "Aprovado! "; 
+            } else if(media < 4) { 
+                document.getElementById("resultado").innerHTML = "O resultado será exibido aqui:  " + "Reprovado! ";
+            } else { 
+                document.getElementById("resultado").innerHTML = "O resultado será exibido aqui:  " + "Recuperação! "; 
+            }
+
+            // Adicionando a mensagem da média ao lado do campo de entrada da Nota 2
+            document.getElementById("media-message").innerText = "A média é: " + media.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h2> FORMULÁRIO 2 SEMESTRE/ E.M </h2>
+    <form> 
+        <h4>Nota 1: <input type="text" placeholder="Português" id="n1"></h4>
+        <h4>Nota 2: <input type="text" placeholder="Matemática" id="n2"></h4>
+        <h4>Nota 3: <input type="text" placeholder="Geografia" id="n3"></h4>
+        <h4>Nota 4: <input type="text" placeholder="Biologia" id="n4"></h4>
+        <div id="media-message" class="media-message"></div> <!-- Elemento para exibir a mensagem da média -->
+        <input type="button" value="Calcular Média" onclick="media()" id="botão">
+        <h1 id="resultado"> O resultado será exibido aqui: </h1>
+    </form>
+</body>
+</html>
